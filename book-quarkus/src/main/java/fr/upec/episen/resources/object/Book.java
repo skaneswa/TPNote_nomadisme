@@ -4,7 +4,6 @@ package fr.upec.episen.resources.object;
 
 import lombok.Data;
 
-import java.util.ArrayList;
 
 @Data
 public class Book {
