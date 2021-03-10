@@ -11,6 +11,8 @@ import javax.inject.Singleton;
 @Singleton
 public class QuantityGrpcService extends QuantityGrpc.QuantityImplBase {
 
+    private QuantityGrpc.QuantityBlockingStub quantityGrpcService;
+
     @Override
     public void getQuantity(QuantityNameRequest request, StreamObserver<QuantityNameReply> responseObserver) {
         String isbn = request.getIsbn();
@@ -38,5 +40,21 @@ public class QuantityGrpcService extends QuantityGrpc.QuantityImplBase {
         );
 
         responseObserver.onCompleted();
+    }
+
+
+    @Override
+    public void removeQuantity(QuantityNameRequest request, StreamObserver<QuantityNameReply> responseObserver){
+        String isbn = request.getIsbn();
+        int quantityToRemove = request.getQuantityToRemove();
+        int quantity = quantityGrpcService.getQuantity(
+                QuantityNameRequest.newBuilder()
+                        .setIsbn(isbn)
+                        .build()).getQuantity();
+        responseObserver.onNext(QuantityNameReply
+                .newBuilder()
+                .setQuantity(quantity - quantityToRemove)
+                .build()
+        );
     }
 }

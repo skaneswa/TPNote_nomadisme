@@ -7,12 +7,23 @@ option java_package = "fr.upec.episen.proto";
 
 service Quantity{
   rpc GetQuantity(QuantityNameRequest) returns (QuantityNameReply){}
+  rpc RemoveQuantity(QuantityNameRequest) returns (QuantityNameReply){}
 }
 
 message QuantityNameRequest{
   string isbn = 1;
+  int32 quantityToRemove = 2;
+}
+
+message RemoveQuantityRequest{
+  string isbn = 1;
+  int32 quantity = 2;
 }
 
 message QuantityNameReply{
   int32 quantity = 1;
+}
+
+message RemoveQuantityReply{
+  int32 newQuantity = 1;
 }

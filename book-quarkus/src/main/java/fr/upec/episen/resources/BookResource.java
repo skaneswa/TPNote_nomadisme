@@ -59,6 +59,14 @@ public class BookResource {
         return list;
     }
 
+    @POST
+    @Path("/{isbn}/buy")
+    public void buyBook(@PathParam("isbn")String isbn){
+        quantityGrpcService.removeQuantity(QuantityNameRequest.newBuilder()
+                .setIsbn(isbn)
+                .setQuantityToRemove(1)
+                .build());
+    }
 
 
 
