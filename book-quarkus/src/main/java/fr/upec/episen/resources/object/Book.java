@@ -1,9 +1,9 @@
 package fr.upec.episen.resources.object;
 
 
+
 import lombok.Data;
 
-import java.util.ArrayList;
 
 @Data
 public class Book {
@@ -21,7 +21,6 @@ public class Book {
     private String title;
     private int price;
     private String isbn;
-    private int quantity;
 
 
 }
