@@ -14,5 +14,5 @@ message QuantityNameRequest{
 }
 
 message QuantityNameReply{
-  int32 name = 1;
+  int32 quantity = 1;
 }
